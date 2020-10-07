@@ -102,7 +102,7 @@ export async function ready() {
 
   // load the base dictionary
   if (iconDatabasePolicy === 0 || iconDatabasePolicy === 1) {
-    let path = `/modules/vtta-iconizer/data/${game.settings.get("vtta-iconizer", "base-dictionary")}`;
+    let path = `${window.location.origin}/${ROUTE_PREFIX ? ROUTE_PREFIX + "/" : ""}modules/vtta-iconizer/data/${game.settings.get("vtta-iconizer", "base-dictionary")}`;
 
     let fileExists = await utils.serverFileExists(path);
     if (fileExists) {
@@ -133,7 +133,7 @@ export async function ready() {
         console.log("Error loading custom dictionary from " + path);
       }
     } else {
-      let path = `/${game.settings.get("vtta-iconizer", "icon-directory")}/icons.json`;
+      let path = `${window.location.origin}/${ROUTE_PREFIX ? ROUTE_PREFIX + "/" : ""}${game.settings.get("vtta-iconizer", "icon-directory")}/icons.json`;
       let fileExists = await utils.serverFileExists(path);
       if (fileExists) {
         let response = await fetch(path, { method: "GET" });
